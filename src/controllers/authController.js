@@ -1,6 +1,4 @@
 
-
-
 // src/controllers/authController.js
 
 import { generateToken } from '../utils/token-generator.js';
