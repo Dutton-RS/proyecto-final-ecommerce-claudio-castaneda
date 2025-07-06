@@ -1,8 +1,11 @@
 🛍️ Proyecto Final E-commerce - Claudio Castañeda
 
+
 API REST construida con Node.js y Express, que permite realizar operaciones CRUD sobre una base de datos en Firebase Firestore. Esta API está diseñada para gestionar productos y usuarios en un sistema de ecommerce, incluyendo funcionalidades como filtrado, estadísticas y manejo avanzado de stock.
 
-⸻
+El proyecto se encuentra desplegado en la nube mediante Vercel, lo que permite su acceso público desde cualquier cliente (por ejemplo, Postman o aplicaciones frontend) de forma rápida, segura y escalable.
+
+
 
 📦 Tecnologías Utilizadas
     •   Node.js
@@ -12,17 +15,18 @@ API REST construida con Node.js y Express, que permite realizar operaciones CRUD
     •   JWT (autenticación)
     •   Dotenv
     •   Morgan (logger HTTP)
+    •   Vercel
 
-⸻
+
 
 💻 Entorno de Desarrollo
-    •   💻 MacBook Air M4 – 24 GB RAM
+    •   💻 MacBook Air M4 – 24 GB RAM / macOS Sequoia 15.5
     •   🧠 Editor: Visual Studio Code
     •   🗂️ Base de datos: Firebase Firestore
     •   🔐 Autenticación: Middleware con tokens JWT
     •   🧪 Testing y consumo de API: Postman
 
-⸻
+
 
 🔐 Autenticación
 
@@ -31,7 +35,7 @@ Las rutas públicas están bajo /api/auth:
     •   POST /api/auth/register → Registro de usuario
     •   POST /api/auth/login → Inicio de sesión
 
-⸻
+
 
 🧩 Estructura del Proyecto
 
@@ -74,13 +78,19 @@ proyecto-final-ecommerce-claudio-castaneda/
 │   │
 │   └── utils/                   # Funciones utilitarias
 │       └── token-generator.js
-⸻
+
+
 
 🔧 Cómo iniciar el proyecto
+   En terminal:
 
 npm run start
 
-⸻
+
+🌍 Dominios para pruebas en Postman
+	•	Dominio principal:
+proyecto-final-ecommerce-claudio-ca.vercel.app/
+
 
 🧪 Rutas disponibles (para usar en Postman)
 
@@ -116,13 +126,12 @@ POST    /api/                     Crear producto
 PUT /api/:id                      Actualizar producto
 PUT /api/:id/stock                Modificar stock manual
 PUT /api/:id/reducir-stock        Reducir stock automático
-DELETE  /api/:id                  Eliminar (soft delete) - Modifica el campo "activo" de true a false. (Esto lo inhabilita para la lectura pero no lo borra fisicamente)
+DELETE  /api/:id                  Eliminar (soft delete): Cambia el campo activo de true a false, lo que oculta el producto en las consultas sin eliminarlo físicamente de la base de datos.
 DELETE  /api/:id/permanente       Eliminar permanente (Lo elimina fisicamente)
 
 
-⸻
 
-🧾 Ejemplo de documento - Colección Products
+🧾 Ejemplo de documento - Colección "Products"
 
 {
   "activo": true,
@@ -141,9 +150,9 @@ Reglas sugeridas (validación lógica):
     •   activo debe ser true o false
     •   categoria debe coincidir con un listado permitido ("accesorios", "celulares", etc.)
 
-⸻
 
-👤 Ejemplo de documento - Colección Users
+
+👤 Ejemplo de documento - Colección "Users"
 
 {
   "activo": true,
@@ -160,14 +169,14 @@ Reglas sugeridas:
     •   edad entre 13 y 99
     •   password mínimo 8 caracteres (en producción debe estar cifrada)
 
-⸻
+
 
 🌐 Middleware
     •   corsMiddleware.js → Permite el acceso desde cualquier origen (o definido)
     •   authentication.js → Verifica tokens JWT para proteger rutas
     •   token-generator.js → Genera tokens seguros para el login
 
-⸻
+
 
 🚀 Despliegue
 
@@ -177,11 +186,19 @@ Este proyecto es apto para despliegue en:
     •   Railway
     •   Firebase Hosting (para frontend) + API backend externa
 
-⸻
+Instancia de despliegue (Vercel):
+proyecto-final-ecommerce-claudio-castaneda-jezrnfuo6.vercel.app
+
+Repositorio GitHub:
+https://github.com/Dutton-RS/proyecto-final-ecommerce-claudio-castaneda
+
+
 
 📫 Contacto
 
 Desarrollado por: Claudio Castañeda
 📧 Email: cgc_ar@yahoo.com.ar
 🔗 GitHub: (https://github.com/Dutton-RS)
-💻 Proyecto creado con mucha dedicacion y esfuerzo en Visual Studio Code – macOS Sequoia 15.5 M4
+💻 Proyecto creado con dedicacion en Visual Studio Code – macOS Sequoia 15.5 M4
+
+
