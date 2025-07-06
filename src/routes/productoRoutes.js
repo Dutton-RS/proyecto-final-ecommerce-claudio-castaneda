@@ -6,23 +6,23 @@ import ProductoController from '../controllers/productoController.js';
 
 const router = express.Router();
 
-// RUTAS ESPECÍFICAS DEBEN IR PRIMERO (como /filtrar, /buscar, /con-stock, etc.)
-router.get('/filtrar', ProductoController.filtrar); // <--- THIS MUST BE BEFORE /:id
+// RUTAS ESPECÍFICAS 
+router.get('/filtrar', ProductoController.filtrar); 
 router.get('/buscar', ProductoController.buscarPorTexto); 
 router.get('/con-stock', ProductoController.obtenerConStock); 
 router.get('/agotados', ProductoController.obtenerAgotados); 
 router.get('/estadisticas', ProductoController.obtenerEstadisticas); 
 router.get('/categorias', ProductoController.obtenerCategorias); 
 
-// RUTAS CON PARÁMETROS ESPECÍFICOS DEBEN IR ANTES DE /:id SI TIENEN NOMBRES FIJOS
+// RUTAS CON PARÁMETROS ESPECÍFICOS 
 router.get('/categoria/:categoria', ProductoController.obtenerPorCategoria);
 
 
-// RUTAS GENERALES (como / o /:id) VAN AL FINAL
-router.get('/', ProductoController.obtenerTodos); // For GET /api/productos
-router.get('/:id', ProductoController.obtenerPorId); // For GET /api/productos/:id
+// RUTAS GENERALES 
+router.get('/', ProductoController.obtenerTodos); // Para GET /api/productos
+router.get('/:id', ProductoController.obtenerPorId); // Para GET /api/productos/:id
 
-// Rutas POST/PUT/DELETE no tienen el mismo problema de orden con GET
+// Rutas POST/PUT/DELETE 
 router.post('/', ProductoController.crear);
 router.put('/:id', ProductoController.actualizar);
 router.delete('/:id', ProductoController.eliminar);

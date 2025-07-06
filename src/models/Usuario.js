@@ -160,29 +160,27 @@ class Usuario {
 //-------------COMIENZO adaptacion TOKEN a Usuarios---------------------------------------------------------------
 
 
-  // MODIFICACIÓN NECESARIA AQUÍ: Método para obtener usuario por email
-  async getByEmail(email) { // <-- This is the method the authController expects
+  // Método para obtener usuario por email
+  async getByEmail(email) { // <-- este es el método que espera el authController.
     try {
-      // Create a query to find documents where the 'email' field matches the provided email
+      // Crear una consulta para encontrar documentos donde el campo 'email' coincida con el email proporcionado
       const q = query(usuariosCollection, where('email', '==', email));
-      
-      // Execute the query
+
+      // Ejecutar la consulta
       const querySnapshot = await getDocs(q);
 
-      // Check if any documents were found
+      // Verificar si se encontraron documentos
       if (querySnapshot.empty) {
-        return null; // No user found with that email
+        return null; // No se encontró ningún usuario con ese email
       }
 
-      // Assuming email is unique, return the first document found.
-      // If emails are not unique, you might need to handle multiple results or enforce uniqueness.
-      const docSnap = querySnapshot.docs[0]; // Get the first document from the results
-      
-      // Return the user data, including its ID
+      const docSnap = querySnapshot.docs[0]; // toma el primer documento de los resultados
+
+      // Retornar los datos del usuario, incluyendo su ID
       return { id: docSnap.id, ...docSnap.data() };
     } catch (error) {
       console.error("Error obteniendo usuario por email:", error);
-      throw error; // Re-throw the error for the service/controller to handle
+      throw error; // Arroja el error para que lo maneje el servicio/controlador
     }
   }
 

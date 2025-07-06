@@ -19,7 +19,7 @@ export async function login(req, res) {
     // const passwordMatch = await bcrypt.compare(password, userFromDB.password);
 
 
-    const passwordMatch = (password === userFromDB.password); // <--- USE THIS LINE for plain text comparison
+    const passwordMatch = (password === userFromDB.password); 
 
 
     if (!passwordMatch) {

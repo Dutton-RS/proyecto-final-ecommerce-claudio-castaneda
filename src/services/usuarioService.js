@@ -1,7 +1,7 @@
 
 
 
-// // src/services/UsuarioService.js
+// // src/services/usuarioService.js
 
 import Usuario from '../models/Usuario.js';
 import bcrypt from 'bcryptjs'; 
@@ -51,18 +51,16 @@ class UsuarioService {
         throw new Error('La categoría no puede estar vacía');
       }
 
-      // --- MODIFICACIÓN CLAVE AQUÍ ---
-      // Hash the password BEFORE creating the user
-      const hashedPassword = await bcrypt.hash(datosUsuario.password, 10); // 10 es el costo del salt (rondas), un buen valor
-      // --- FIN MODIFICACIÓN CLAVE ---
+      // Hashear la contraseña ANTES de crear el usuario
+      const hashedPassword = await bcrypt.hash(datosUsuario.password, 10);
 
       const usuarioNormalizado = {
         ...datosUsuario,
-        nombre: datosUsuario.nombre.trim(),
-        email: datosUsuario.email.trim(), // Asegurarse de normalizar también el email
+        nombre: datosUsuario.nombre.trim(), // normalizar el nombre
+        email: datosUsuario.email.trim(), // normalizar también el email
         password: hashedPassword, // <--- Guardar la contraseña HASHEADA
-        categoria: datosUsuario.categoria.trim(),
-        edad: datosUsuario.edad || 0, // Asegurarse que edad tiene un valor por defecto si no viene
+        categoria: datosUsuario.categoria.trim(), // normalizar la categoría
+        edad: datosUsuario.edad || 0, // Asegurar que Edad tiene un valor por defecto si no viene
         descripcion: datosUsuario.descripcion?.trim() || ''
       };
 
@@ -191,12 +189,9 @@ class UsuarioService {
   // Obtener productos por categoría (cambiado a usuarios)
   async obtenerPorCategoria(categoria) {
     try {
-      // Necesitas implementar getPorCategoria en Usuario.js si quieres usarlo
-      // Actualmente, tu Usuario.js tiene el método getCategorias, pero no getPorCategoria
-      // Si Usuario.js no tiene getPorCategoria, esta línea causará un error
-      // Puedes implementar un método similar a filter con un filtro directo por categoría.
+      
       throw new Error('Método obtenerPorCategoria no implementado en el modelo Usuario.');
-      // return await Usuario.getPorCategoria(categoria.trim());
+      
     } catch (error) {
       throw new Error(`Error al obtener usuarios por categoría: ${error.message}`);
     }

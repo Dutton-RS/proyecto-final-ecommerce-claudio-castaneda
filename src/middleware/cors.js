@@ -12,14 +12,14 @@ const corsOptions = {
     ];
 
     if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true); // Allow the request
+      callback(null, true); 
     } else {
-      callback(null, false); // <--- CHANGE THIS LINE
+      callback(null, false); 
     }
   },
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Métodos permitidos
   allowedHeaders: ['Origin', 'X-Requested-With', 'Content-Type', 'Accept', 'Authorization'], // Encabezados permitidos
-  credentials: true, // Permitir cookies y credenciales (si es necesario)
+  credentials: true, 
   optionsSuccessStatus: 200, // Estado para solicitudes OPTIONS
 };
 
