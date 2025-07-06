@@ -1,13 +1,13 @@
 
 
 
-import ProductoService from '../services/ProductoService.js';
+import productoService from '../services/productoService.js';
 
 class ProductoController {
   // Obtener todos los productos activos
   async obtenerTodos(req, res) {
     try {
-      const productos = await ProductoService.obtenerTodos();
+      const productos = await productoService.obtenerTodos();
       res.status(200).json({
         total: productos.length,
         productos
@@ -24,7 +24,7 @@ class ProductoController {
       if (!id) {
         return res.status(400).json({ mensaje: 'ID de producto es requerido' });
       }
-      const producto = await ProductoService.obtenerPorId(id);
+      const producto = await productoService.obtenerPorId(id);
       res.status(200).json(producto);
     } catch (error) {
       res.status(404).json({ mensaje: error.message });
@@ -34,7 +34,7 @@ class ProductoController {
   // Crear un nuevo producto
   async crear(req, res) {
     try {
-      const producto = await ProductoService.crear(req.body);
+      const producto = await productoService.crear(req.body);
       res.status(201).json({
         mensaje: `Producto creado: ${producto.nombre} ($${producto.precio})`,
         producto
@@ -51,7 +51,7 @@ class ProductoController {
       if (!id) {
         return res.status(400).json({ mensaje: 'ID de producto es requerido' });
       }
-      const producto = await ProductoService.actualizar(id, req.body);
+      const producto = await productoService.actualizar(id, req.body);
       res.status(200).json({
         mensaje: `Producto ${id} actualizado`,
         producto
@@ -68,7 +68,7 @@ class ProductoController {
       if (!id) {
         return res.status(400).json({ mensaje: 'ID de producto es requerido' });
       }
-      const producto = await ProductoService.eliminar(id);
+      const producto = await productoService.eliminar(id);
       res.status(200).json({
         mensaje: 'Producto eliminado (soft delete)',
         producto
@@ -85,7 +85,7 @@ class ProductoController {
       if (!id) {
         return res.status(400).json({ mensaje: 'ID de producto es requerido' });
       }
-      const resultado = await ProductoService.eliminarPermanentemente(id);
+      const resultado = await productoService.eliminarPermanentemente(id);
       res.status(200).json(resultado);
     } catch (error) {
       res.status(404).json({ mensaje: `Error al eliminar producto permanentemente: ${error.message}` });
@@ -95,7 +95,7 @@ class ProductoController {
   // Filtrar productos
   async filtrar(req, res) {
     try {
-      const productos = await ProductoService.filtrar(req.query);
+      const productos = await productoService.filtrar(req.query);
       res.json({
         total: productos.length,
         filtros_aplicados: req.query,
@@ -114,7 +114,7 @@ class ProductoController {
       if (!texto) {
         return res.status(400).json({ mensaje: 'Texto de búsqueda es requerido' });
       }
-      const productos = await ProductoService.buscarPorTexto(texto);
+      const productos = await productoService.buscarPorTexto(texto);
       res.status(200).json({
         total: productos.length,
         texto_buscado: texto,
@@ -128,7 +128,7 @@ class ProductoController {
   // Obtener productos con stock
   async obtenerConStock(req, res) {
     try {
-      const productos = await ProductoService.obtenerConStock();
+      const productos = await productoService.obtenerConStock();
       res.status(200).json({
         total: productos.length,
         productos
@@ -141,7 +141,7 @@ class ProductoController {
   // Obtener productos agotados
   async obtenerAgotados(req, res) {
     try {
-      const productos = await ProductoService.obtenerAgotados();
+      const productos = await productoService.obtenerAgotados();
       res.status(200).json({
         total: productos.length,
         productos
@@ -162,7 +162,7 @@ class ProductoController {
       if (typeof stock !== 'number') {
         return res.status(400).json({ mensaje: 'Stock debe ser un número' });
       }
-      const producto = await ProductoService.actualizarStock(id, stock);
+      const producto = await productoService.actualizarStock(id, stock);
       res.status(200).json({
         mensaje: `Stock del producto ${id} actualizado a ${stock}`,
         producto
@@ -183,7 +183,7 @@ class ProductoController {
       if (typeof cantidad !== 'number' || cantidad <= 0) {
         return res.status(400).json({ mensaje: 'Cantidad debe ser un número positivo' });
       }
-      const producto = await ProductoService.reducirStock(id, cantidad);
+      const producto = await productoService.reducirStock(id, cantidad);
       res.status(200).json({
         mensaje: `Stock del producto ${id} reducido en ${cantidad}`,
         producto
@@ -200,7 +200,7 @@ class ProductoController {
       if (!categoria) {
         return res.status(400).json({ mensaje: 'Categoría es requerida' });
       }
-      const productos = await ProductoService.obtenerPorCategoria(categoria);
+      const productos = await productoService.obtenerPorCategoria(categoria);
       res.status(200).json({
         total: productos.length,
         categoria,
@@ -214,7 +214,7 @@ class ProductoController {
   // Obtener todas las categorías
   async obtenerCategorias(req, res) {
     try {
-      const categorias = await ProductoService.obtenerCategorias();
+      const categorias = await productoService.obtenerCategorias();
       res.status(200).json({
         total: categorias.length,
         categorias
@@ -227,7 +227,7 @@ class ProductoController {
   // Obtener estadísticas de productos
   async obtenerEstadisticas(req, res) {
     try {
-      const estadisticas = await ProductoService.obtenerEstadisticas();
+      const estadisticas = await productoService.obtenerEstadisticas();
       res.status(200).json(estadisticas);
     } catch (error) {
       res.status(500).json({ mensaje: `Error al obtener estadísticas: ${error.message}` });

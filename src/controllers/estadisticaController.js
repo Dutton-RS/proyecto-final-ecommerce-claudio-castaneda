@@ -1,5 +1,5 @@
-import UsuarioService from '../services/usuarioService.js';
-import ProductoService from '../services/productoService.js';
+import usuarioService from '../services/usuarioService.js';
+import productoService from '../services/productoService.js';
 
 class EstadisticaController {
 
@@ -8,14 +8,14 @@ class EstadisticaController {
       const { tipo } = req.query;
 
       if (tipo === 'usuarios') {
-        const estadisticas = await UsuarioService.obtenerEstadisticas();
+        const estadisticas = await usuarioService.obtenerEstadisticas();
         res.json(estadisticas);
       } else if (tipo === 'productos') {
-        const estadisticas = await ProductoService.obtenerEstadisticas();
+        const estadisticas = await productoService.obtenerEstadisticas();
         res.json(estadisticas);
       } else {
-        const usuarios = await UsuarioService.obtenerTodos();
-        const productos = await ProductoService.obtenerTodos();
+        const usuarios = await usuarioService.obtenerTodos();
+        const productos = await productoService.obtenerTodos();
         res.json({
           usuarios: usuarios.length,
           productos: productos.length,
